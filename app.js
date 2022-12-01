@@ -9,7 +9,12 @@ const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0
 mongoose.connect(CONNECTION_STRING);
 const app = express()
 
-app.use(cors())
+const corsOptions ={
+    origin:'*',
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 app.use(express.json());
 TuitsController(app);
 HelloController(app)
