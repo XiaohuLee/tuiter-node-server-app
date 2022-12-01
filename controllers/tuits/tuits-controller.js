@@ -1,7 +1,6 @@
 import * as tuitsDao from './tuits-dao.js'
 
 const createTuit = async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
     const newTuit = req.body;
     newTuit.image = "nasa.jpg";
     newTuit.replies = 0;
@@ -12,27 +11,28 @@ const createTuit = async (req, res) => {
     newTuit.disliked = false;
     const insertedTuit = await tuitsDao
         .createTuit(newTuit);
+    res.setHeader("Access-Control-Allow-Origin", "*")
     res.json(insertedTuit);
 }
 const findTuits = async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
     const tuits = await tuitsDao.findTuits()
+    res.setHeader("Access-Control-Allow-Origin", "*")
     res.json(tuits);
 }
 const updateTuit = async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
     const tuitdIdToUpdate = req.params.tid;
     const updates = req.body;
     const status = await tuitsDao
         .updateTuit(tuitdIdToUpdate,
             updates);
+    res.setHeader("Access-Control-Allow-Origin", "*")
     res.sendStatus(status);
 }
 
 const deleteTuit = async (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
     const tuitdIdToDelete = req.params.tid;
-    const status = await tuitsDao.deleteTuit(tuitdIdToDelete);//is _id number or string?
+    const status = await tuitsDao.deleteTuit(tuitdIdToDelete);
+    res.setHeader("Access-Control-Allow-Origin", "*")
     res.sendStatus(status);
 }
 export default (app) => {
