@@ -11,12 +11,10 @@ const createTuit = async (req, res) => {
     newTuit.disliked = false;
     const insertedTuit = await tuitsDao
         .createTuit(newTuit);
-    // res.setHeader("Access-Control-Allow-Origin", "*")
     res.json(insertedTuit);
 }
 const findTuits = async (req, res) => {
     const tuits = await tuitsDao.findTuits()
-    //res.setHeader("Access-Control-Allow-Origin", "*")
     res.json(tuits);
 }
 const updateTuit = async (req, res) => {
@@ -25,14 +23,12 @@ const updateTuit = async (req, res) => {
     const status = await tuitsDao
         .updateTuit(tuitdIdToUpdate,
             updates);
-    //res.setHeader("Access-Control-Allow-Origin", "*")
     res.sendStatus(status);
 }
 
 const deleteTuit = async (req, res) => {
     const tuitdIdToDelete = req.params.tid;
     const status = await tuitsDao.deleteTuit(tuitdIdToDelete);
-    //res.setHeader("Access-Control-Allow-Origin", "*")
     res.sendStatus(status);
 }
 export default (app) => {
