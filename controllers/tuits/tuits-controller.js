@@ -1,5 +1,5 @@
 import * as tuitsDao from './tuits-dao.js'
-
+import mongoose from "mongoose"
 
 const createTuit = async (req, res) => {
     const newTuit = req.body;
@@ -19,7 +19,7 @@ const findTuits = async (req, res) => {
     res.json(tuits);
 }
 const updateTuit = async (req, res) => {
-    const tuitdIdToUpdate = req.params.tid;
+    const tuitdIdToUpdate = mongoose.Types.ObjectId(req.params.tid);
     const updates = req.body;
     const status = await tuitsDao
         .updateTuit(tuitdIdToUpdate,
@@ -28,7 +28,7 @@ const updateTuit = async (req, res) => {
 }
 
 const deleteTuit = async (req, res) => {
-    const tuitdIdToDelete = req.params.tid;
+    const tuitdIdToDelete = mongoose.Types.ObjectId(req.params.tid);
     const status = await tuitsDao.deleteTuit(tuitdIdToDelete);//is _id number or string?
     res.sendStatus(status);
 }
