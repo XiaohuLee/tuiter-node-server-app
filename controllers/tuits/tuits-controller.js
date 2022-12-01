@@ -14,24 +14,30 @@ const createTuit = async (req, res) => {
     res.json(insertedTuit);
 }
 const findTuits = async (req, res) => {
-    const tuits = await tuitsDao.findTuits();
     res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    const tuits = await tuitsDao.findTuits();
+
     res.json(tuits);
 }
 const updateTuit = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
     const tuitdIdToUpdate = req.params.tid;
     const updates = req.body;
     const status = await tuitsDao
         .updateTuit(tuitdIdToUpdate,
             updates);
-    res.setHeader("Access-Control-Allow-Origin", "*")
+
     res.sendStatus(status);
 }
 
 const deleteTuit = async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Credentials", "true");
     const tuitdIdToDelete = req.params.tid;
     const status = await tuitsDao.deleteTuit(tuitdIdToDelete);
-    res.setHeader("Access-Control-Allow-Origin", "*")
+
     res.sendStatus(status);
 }
 export default (app) => {
