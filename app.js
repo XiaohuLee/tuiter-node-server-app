@@ -9,8 +9,7 @@ const CONNECTION_STRING = process.env.DB_CONNECTION_STRING || 'mongodb://127.0.0
 mongoose.connect(CONNECTION_STRING);
 const app = express()
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', "*")
+    res.header('Access-Control-Allow-Origin', 'https://stalwart-sable-9480da.netlify.app/');
     next();
 });
 app.use(cors())
