@@ -10,6 +10,7 @@ mongoose.connect(CONNECTION_STRING);
 const app = express()
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', "*")
     next();
 });
 app.use(cors())
